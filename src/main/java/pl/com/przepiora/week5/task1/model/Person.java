@@ -18,7 +18,7 @@ import java.util.Map;
     "cell",
     "picture"
 })
-public class Result {
+public class Person {
 
   @JsonProperty("name")
   private Name name;
@@ -95,7 +95,7 @@ public class Result {
 
   @Override
   public String toString() {
-    return "Result{" +
+    return "Person{" +
         "name=" + name +
         ", location=" + location +
         ", email='" + email + '\'' +

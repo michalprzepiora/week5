@@ -15,22 +15,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "results",
     "info"
 })
-public class PersonRepo {
+public class PersonApiResponse {
 
   @JsonProperty("results")
-  private List<Result> results = null;
+  private List<Person> results = null;
   @JsonProperty("info")
   private Info info;
   @JsonIgnore
   private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
   @JsonProperty("results")
-  public List<Result> getResults() {
+  public List<Person> getResults() {
     return results;
   }
 
   @JsonProperty("results")
-  public void setResults(List<Result> results) {
+  public void setResults(List<Person> results) {
     this.results = results;
   }
 
@@ -56,7 +56,7 @@ public class PersonRepo {
 
   @Override
   public String toString() {
-    return "PersonRepo{" +
+    return "PersonApiResponse{" +
         "results=" + results +
         ", info=" + info +
         ", additionalProperties=" + additionalProperties +
