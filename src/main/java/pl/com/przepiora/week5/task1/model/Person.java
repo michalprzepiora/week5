@@ -31,7 +31,7 @@ public class Person {
   @JsonProperty("picture")
   private Picture picture;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("name")
   public Name getName() {

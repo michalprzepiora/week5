@@ -24,7 +24,7 @@ public class Name {
   @JsonProperty("last")
   private String last;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("title")
   public String getTitle() {

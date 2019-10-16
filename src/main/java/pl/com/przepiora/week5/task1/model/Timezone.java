@@ -21,7 +21,7 @@ public class Timezone {
   @JsonProperty("description")
   private String description;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("offset")
   public String getOffset() {

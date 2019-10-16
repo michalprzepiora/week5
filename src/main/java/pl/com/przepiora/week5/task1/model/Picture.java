@@ -24,7 +24,7 @@ public class Picture {
   @JsonProperty("thumbnail")
   private String thumbnail;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("large")
   public String getLarge() {

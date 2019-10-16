@@ -1,37 +1,47 @@
 package pl.com.przepiora.week5.vaadin;
 
-import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import pl.com.przepiora.week5.task1.model.Person;
 import pl.com.przepiora.week5.task1.repository.PersonRepository;
 
-import java.util.List;
-
 public class WarmUpView extends VerticalLayout {
 
   public WarmUpView() {
-    this.add(new Label("na rogrzewke"));
-    PersonRepository personRepository = new PersonRepository();
-    List<Person> personList = personRepository.getPersonList();
+        this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        this.add(new Label("Losowe dane 10 fikcyjnych osób. (API: randomuser.me)"));
+        PersonRepository personRepository = new PersonRepository();
 
-    Person person = personList.get(0);
+    Grid<Person> personGrid = new Grid<>();
+        personGrid.setHeightByRows(true);
+        personGrid.setItems(personRepository.getPersonList());
+        personGrid.addComponentColumn(this::getPersonImage).setWidth("1px");
+        personGrid.addComponentColumn(this::getFullName).setHeader("Imię i nazwisko");
+        personGrid.addComponentColumn(this::getPersonCityAndCountry).setHeader("Miasto - kraj");
+        personGrid.addColumn(Person::getEmail).setHeader("E-mail");
+        personGrid.addColumn(Person::getCell).setHeader("Numer telefonu");
 
-    System.out.println(person.getName().getFirst()+" "+person.getLocation().getCity()+" "+person.getEmail()+" "+person.getCell());
+        add(personGrid);
+    }
 
+    private Label getFullName(Person person) {
+        String text = person.getName().getFirst() + " " + person.getName().getLast();
+        return new Label(text);
+    }
 
+    private Component getPersonImage(Person person) {
+        Image image = new Image(person.getPicture().getThumbnail(), "image");
+        Div div = new Div(image);
+        div.setMinHeight("55px");
+        return div;
+    }
 
-
-
-
-    Button button = new Button("click me");
-    add(button);
-
-    button.addClickListener(event ->{
-      System.out.println("Click!!!!");
-
-
-
-    });
-  }
+    private Label getPersonCityAndCountry(Person person) {
+        String text = person.getLocation().getCity() + " - " + person.getLocation().getCountry();
+        return new Label(text);
+    }
 }

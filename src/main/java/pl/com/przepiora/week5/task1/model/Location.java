@@ -36,7 +36,7 @@ public class Location {
   @JsonProperty("timezone")
   private Timezone timezone;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("street")
   public Street getStreet() {

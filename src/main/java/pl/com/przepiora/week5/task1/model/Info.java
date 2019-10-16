@@ -27,7 +27,7 @@ public class Info {
   @JsonProperty("version")
   private String version;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("seed")
   public String getSeed() {

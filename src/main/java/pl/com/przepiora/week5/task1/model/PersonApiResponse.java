@@ -22,7 +22,7 @@ public class PersonApiResponse {
   @JsonProperty("info")
   private Info info;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("results")
   public List<Person> getResults() {

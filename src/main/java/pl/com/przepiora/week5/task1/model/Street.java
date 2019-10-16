@@ -21,7 +21,7 @@ public class Street {
   @JsonProperty("name")
   private String name;
   @JsonIgnore
-  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  private Map<String, Object> additionalProperties = new HashMap<>();
 
   @JsonProperty("number")
   public Integer getNumber() {
