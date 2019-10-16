@@ -11,13 +11,13 @@ public class PersonRepository {
   private static final String URL = "https://randomuser.me/api/?inc=picture,name,location,email,cell&results=10";
   private List<Person> personList;
 
-  public List<Person> getPersonList() {
-    return personList;
-  }
-
   public PersonRepository() {
     RestTemplate restTemplate = new RestTemplate();
     PersonApiResponse personApiResponse = restTemplate.getForObject(URL, PersonApiResponse.class);
     personList = personApiResponse.getResults();
+  }
+
+  public List<Person> getPersonList() {
+    return personList;
   }
 }
