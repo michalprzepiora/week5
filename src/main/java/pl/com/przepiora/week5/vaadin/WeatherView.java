@@ -1,33 +1,35 @@
 package pl.com.przepiora.week5.vaadin;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import pl.com.przepiora.week5.task2.model.Location;
 import pl.com.przepiora.week5.task2.service.LocationManager;
 
 
 public class WeatherView extends VerticalLayout {
 
-    public WeatherView() {
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+  private Location selectedLocation;
 
-        TextField filterTextField = new TextField("Filtruj");
+  public WeatherView() {
+    setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+    LocationManager locationManager = new LocationManager();
 
-      ComboBox<Location> locationComboBox = new ComboBox<>("Wybierz miasto");
-
-        add(filterTextField, locationComboBox);
-
-// -------------------
-        Button button = new Button("click");
-        this.add(new Label("pogodynka"), button);
-        button.addClickListener(e -> {
-            System.out.println("click");
-            LocationManager locationManager = new LocationManager();
-            System.out.println(locationManager.getLocationsList("warsdsdsd"));
+    Button selectCityButton = new Button("Zmień miasto");
+    selectCityButton.addClickListener(event -> {
+      Dialog dialog = new ChooseCityDialog();
+      dialog.open();
         });
 
-    }
+    add(selectCityButton);
+
+// -------------------
+    Button button = new Button("click");
+    this.add(button);
+    button.addClickListener(e -> {
+      System.out.println("click");
+      System.out.println(locationManager.getLocationsList("warsdsdsd"));
+    });
+
+  }
 }
