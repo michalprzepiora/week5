@@ -6,13 +6,22 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.spring.annotation.UIScope;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Route
+@UIScope
 public class MainView extends VerticalLayout {
+  static List<String> counter = new ArrayList<>();
 
   private VerticalLayout mainLayout;
 
   public MainView() {
+    counter.add(counter.size() + "  ------ " + LocalDateTime.now().toString());
     this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
     mainLayout = new VerticalLayout();
     mainLayout.setWidth("60%");
