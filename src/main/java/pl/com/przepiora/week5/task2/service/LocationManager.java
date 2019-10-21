@@ -2,6 +2,7 @@ package pl.com.przepiora.week5.task2.service;
 
 import org.springframework.web.client.RestTemplate;
 import pl.com.przepiora.week5.task2.model.Location;
+import pl.com.przepiora.week5.task2.model.Weather;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,5 +18,10 @@ public class LocationManager {
         String url = "https://www.metaweather.com/api/location/search/?query=" + keyword;
         Location[] locationArray = restTemplate.getForObject(url, Location[].class);
         return Arrays.asList(locationArray);
+    }
+
+    public Weather getWeather(int id){
+        String url = "https://www.metaweather.com/api/location/" + id;
+        return restTemplate.getForObject(url,Weather.class);
     }
 }
