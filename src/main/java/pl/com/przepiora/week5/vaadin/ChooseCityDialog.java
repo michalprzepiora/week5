@@ -15,6 +15,8 @@ import pl.com.przepiora.week5.task2.service.LocationManager;
 
 public class ChooseCityDialog extends Dialog {
 
+    private Location selectedLocation;
+
     public ChooseCityDialog() {
         VerticalLayout mainView = new VerticalLayout();
         mainView.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
@@ -27,6 +29,7 @@ public class ChooseCityDialog extends Dialog {
         locationListBox.setRenderer(new TextRenderer<>(Location::getTitle));
         locationListBox.setHeight("150px");
 
+
         locationTextField.addInputListener(event -> {
             if (!locationTextField.isEmpty()) {
                 locationListBox.setItems(locationManager.getLocationsList(locationTextField.getValue()));
@@ -34,14 +37,27 @@ public class ChooseCityDialog extends Dialog {
         });
 
         Button okButton = new Button("OK");
+        okButton.setEnabled(false);
         Button cancelButton = new Button("Anuluj");
         HorizontalLayout buttonsLayout = new HorizontalLayout(okButton, cancelButton);
         buttonsLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        cancelButton.addClickListener(event->this.close());
+        locationListBox.addValueChangeListener(event -> {
+            okButton.setEnabled(true);
+            selectedLocation = locationListBox.getValue();
+        });
 
+        okButton.addClickListener(event -> this.close());
+        cancelButton.addClickListener(event -> {
+            selectedLocation = null;
+            this.close();
+        });
 
         mainView.add(locationTextField, locationListBox, buttonsLayout);
         this.add(mainView);
+    }
+
+    public Location getSelectedLocation() {
+        return selectedLocation;
     }
 }
